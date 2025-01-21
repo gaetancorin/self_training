@@ -1,1 +1,1 @@
-# self-training
+# self_training
