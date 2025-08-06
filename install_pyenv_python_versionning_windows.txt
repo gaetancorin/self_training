@@ -83,5 +83,8 @@ Problème de pip ?
 écrire sur le terminal:
 pip --version
 python -m pip --version
-Si pip mène vers C:/pythonXX au lieu de pyenv, aller dans le dossier C:/pythonXX
-et remplacer dossier "scripts" par "scripts_not_used" 
+pip mène vers C:/pythonXX
+python -m pip mène vers pyenv
+Il n'y a malheureusement pas de moyen de réparer ca.
+Il faut donc faire les installation en réalisant:
+python -m pip 
