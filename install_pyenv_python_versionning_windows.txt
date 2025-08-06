@@ -77,3 +77,11 @@ puis supprimer manuellement le dossier "C:/python3.11" qui est désormais presqu
 Une betise sur l'installation/la desinstallation ?
 telecharger la version python sur python.org, et lancer l'exécutable pour réparer
 puis désinstaller proprement si nécessaire comme expliqué
+
+--------------
+Problème de pip ?
+écrire sur le terminal:
+pip --version
+python -m pip --version
+Si pip mène vers C:/pythonXX au lieu de pyenv, aller dans le dossier C:/pythonXX
+et remplacer dossier "scripts" par "scripts_not_used" 
