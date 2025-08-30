@@ -6,11 +6,12 @@ import os
 
 # Load .env file
 load_dotenv()
-smtp_server = os.getenv("SMTP_SERVER") # <-- ton serveur SMTP
-smtp_port = int(os.getenv("SMTP_PORT")) # 587 = TLS, 465 = SSL, 25 = non sécurisé
-smtp_user = os.getenv("SMTP_USER") # adresse email de l envoyeur
-smtp_pass = os.getenv("SMTP_PASS") # mot de passe d'application gmail
-recipient = os.getenv("RECIPIENT")# adresse email du destinataire
+smtp_user = os.getenv("SMTP_USER") # sender email
+smtp_pass = os.getenv("SMTP_PASS") # sender password application
+
+smtp_server = os.getenv("SMTP_SERVER") # receiver SMTP server
+smtp_port = int(os.getenv("SMTP_PORT")) # receiver SMTP port (587=TLS, 465=SSL, 25=not secure)
+receiver = os.getenv("RECEIVER") # receiver email
 
 def send_email():
     sender = smtp_user
@@ -18,7 +19,7 @@ def send_email():
     # Création du message
     msg = MIMEMultipart("alternative")
     msg["From"] = sender
-    msg["To"] = recipient
+    msg["To"] = receiver
     msg["Subject"] = "✅ Test SMTP Python"
 
     # Contenu du mail
@@ -40,10 +41,11 @@ def send_email():
     try:
         # Connexion au serveur SMTP
         with smtplib.SMTP(smtp_server, smtp_port) as server:
-            server.starttls()  # sécurité TLS
+            if smtp_port == 587:
+                server.starttls()  # securise TLS
             server.login(smtp_user, smtp_pass)
-            server.sendmail(sender, recipient, msg.as_string())
-        print("✅ Email envoyé avec succès à", recipient)
+            server.sendmail(sender, receiver, msg.as_string())
+        print("✅ Email envoyé avec succès à", receiver)
 
     except Exception as e:
         print("❌ Erreur lors de l'envoi :", e)
