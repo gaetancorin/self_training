@@ -1,0 +1,47 @@
+Créer l'environnement virtuel
+py -m venv env
+
+Aller dedans:
+.\env\Scripts\Activate.ps1
+.venv\Scripts\Activate.ps1
+
+Installer Django
+pip install django
+
+Sauvegarder les installation d'un .env vers un requirements.txt
+pip freeze > requirements.txt
+
+Initié projet Django
+django-admin startproject <nom_project>
+
+---------------
+Commencer un projet:
+
+Créer la base db.sqlite3:
+py manage.py migrate
+
+Créer une application (sous section du projet):
+py manage.py startapp listings
+
+dans merchex/settings = INSTALLED_APPS, ajouter 'listings' pour que l'application reconnaisse la sous section du projet
+
+---------------
+Créer un model, puis passer le modèle a une table de sqlite3
+py manage.py makemigrations
+py manage.py migrate
+
+(voir migrations)
+py manage.py showmigrations
+(ramener a migrations précédentes 'nom de applications' 'nom de migrations precedente')
+python manage.py migrate listings 0004_listing_band
+-------------
+Créer un objet en base de donnée
+
+class Band(models.Model):
+    name = models.fields.CharField(max_length=100)
+band = Band()
+band.name = 'Cut Copy'
+band.save
+(ou)
+ band = Band.objects.create(name='Foo Fighters')
+
