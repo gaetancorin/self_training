@@ -20,3 +20,15 @@ class Band(models.Model):
         return f'{self.name}'
 
 
+class Listing(models.Model):
+    class Type(models.TextChoices):
+        Records = 'RC'
+        Clothing = 'CL'
+        Posters = 'PO'
+        Miscellaneous = 'MI'
+    description = models.fields.TextField()
+    sold = models.fields.BooleanField(default=False)
+    year = models.fields.IntegerField(validators=[MinValueValidator(1900), MaxValueValidator(2025)])
+    type = models.fields.CharField(choices=Type.choices, max_length=5)
+    band = models.ForeignKey(Band, null=True, on_delete=models.SET_NULL)
+

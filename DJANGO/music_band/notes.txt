@@ -45,3 +45,30 @@ band.save
 (ou)
  band = Band.objects.create(name='Foo Fighters')
 
+-------------
+Créer objet dans le shell:
+
+py manage.py shell
+from listings.models import Band
+band = Band()
+band.save()
+
+---------------------
+Nom superuser
+superuser: gaeta 9876
+--------------------
+
+Un UPDATE ce fait toujours avec instance pour que le modele Django update et ne reecrive pas:
+
+def band_update(request, id):
+    band = Band.objects.get(id=id)
+    if request.method == 'POST':
+        form = BandForm(request.POST, instance=band)
+        if form.is_valid():
+            form.save()
+            return redirect('band-detail', band.id)
+    else:
+        form = BandForm(instance=band)
+    return render(request,
+                'listings/band_update.html',
+                {'form': form})
