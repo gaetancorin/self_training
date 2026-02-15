@@ -1,7 +1,7 @@
-Récupérer projet:
+api rest django
+
+Récupérer projet initial:
 https://github.com/OpenClassrooms-Student-Center/7192416_APIs_DRF/tree/main
-
-
 
 ADMIN_ID = 'admin-oc'
 ADMIN_PASSWORD = 'password-oc'

@@ -1,0 +1,13 @@
+<!--# authentication/templates/authentication/change_profil_photo.html-->
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method="post" enctype="multipart/form-data">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <button type="submit" >Changer de photo de profil</button>
+</form>
+
+{% endblock content %}

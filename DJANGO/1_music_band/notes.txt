@@ -1,3 +1,5 @@
+debute Django
+
 Créer l'environnement virtuel
 py -m venv env
 

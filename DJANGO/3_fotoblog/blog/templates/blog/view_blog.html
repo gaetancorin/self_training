@@ -1,0 +1,22 @@
+<!--# blog/templates/blog/view_blog.html-->
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>{{ blog.title }}</h2>
+<p><a href="{% url 'edit_blog' blog.id %}">Modifier le billet</a></p>
+<img src="{{ blog.photo.image.url }}">
+<p>{{ blog.photo.caption }}</p>
+<p>{{ blog.content }}</p>
+
+<p>Contributeurs :</p>
+<ul>
+    {% for user in blog.contributors.all %}
+        <li>{{ user.username }}</li>
+    {% empty %}
+        <li>Aucun contributeur</li>
+    {% endfor %}
+</ul>
+
+{% endblock content %}

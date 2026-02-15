@@ -1,0 +1,45 @@
+
+<!-- UNIQUEMENT SI views HOME 'filtrer et trié par date' -->
+{% extends 'base.html' %}
+{% load blog_extras %}
+{% block content %}
+    <h2>Votre flux</h2>
+    <div class="grid-container">
+        {% for instance in blogs_and_photos %}
+
+            {% if instance|model_type == 'Blog' %}
+                {% include 'blog/partials/blog_snippet.html' with blog=instance %}
+
+            {% elif instance|model_type == 'Photo' %}
+                <div class="post">
+                    <img src="{{ instance.image.url }}">
+                    <p>{{ instance.caption }}</p>
+                    <p><strong>Prise par {{ instance.uploader }}</strong></p>
+                    <p>{{ instance.date_created }}</p>
+                </div>
+            {% endif %}
+
+        {% endfor %}
+
+
+        {% if blogs_and_photos.has_previous %}
+        <span>
+            <a href="?page=1">« première</a>
+            <a href="?page={{ blogs_and_photos.previous_page_number }}">précédente</a>
+        </span>
+        {% endif %}
+
+        <span>
+            Page {{ blogs_and_photos.number }} sur {{ blogs_and_photos.paginator.num_pages }}.
+        </span>
+
+        {% if blogs_and_photos.has_next %}
+        <span>
+            <a href="?page={{ blogs_and_photos.next_page_number }}">suivante</a>
+
+            <a href="?page={{ blogs_and_photos.paginator.num_pages }}">dernière »</a>
+        </span>
+        {% endif %}
+
+    </div>
+{% endblock content %}

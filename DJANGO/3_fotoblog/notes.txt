@@ -1,0 +1,48 @@
+plus loin Django
+
+Créer l'environnement virtuel
+py -m venv ENV
+
+Aller dedans:
+.\ENV\Scripts\Activate.ps1
+.ENV\Scripts\Activate.ps1
+
+Installer Django
+pip install django
+
+Sauvegarder les installation d'un .env vers un requirements.txt
+pip freeze > requirements.txt
+
+Initié projet Django
+django-admin startproject <nom_project>
+
+---------------
+Commencer un projet:
+dans dossier, créer le projet:
+django-admin startproject fotoblog .
+
+Crée App:
+py manage.py startapp authentication
+py manage.py startapp blog
+
+---------------
+Créer un model, puis passer le modèle a une table de sqlite3
+py manage.py makemigrations
+py manage.py migrate
+
+(voir migrations)
+py manage.py showmigrations
+-------------------------
+Créer user dans le shell(doit avoir definie user):
+from authentication.models import User
+User.objects.create_user(username='toto', password='1234', role='CREATOR')
+
+
+
+---------------
+toto (Creator)
+1234
+tata (subscriber)
+0xxxxxxxxR
+titi (Creator)
+0XXXXXXXXXR
